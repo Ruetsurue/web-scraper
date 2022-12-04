@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-found_urls.txt
-urls.txt
+# web-scraper input/output files
+*url*.txt
