@@ -1,4 +1,5 @@
 import asyncio
+import logging
 from typing import Optional
 from aiohttp import ClientSession, ClientResponseError
 from bs4 import BeautifulSoup
@@ -11,7 +12,7 @@ async def fetch_url(url: str, session: ClientSession):
             return url, page_content
 
     except ClientResponseError as e:
-        print(f"{url} returned: '{e.status}: {e.message}'")
+        logging.error(f"{url} returned: '{e.status}: {e.message}'")
         return url, None
 
 
@@ -34,7 +35,7 @@ async def parse_html(url, unparsed_html) -> tuple[str, list]:
         return url, hrefs
 
     except TypeError as e:
-        print(f'Exception while parsing {url} : {e.args}')
+        logging.error(f'Exception while parsing {url} : {e.args}')
         return url, None
 
 

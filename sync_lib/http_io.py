@@ -1,3 +1,4 @@
+import logging
 from typing import Optional
 
 import bs4
@@ -12,7 +13,7 @@ def gather_htmls(urls: list[str]) -> list[tuple[str, Optional[dict]]]:
 
             if response.status_code == 404:
                 message = f"{url} returned {response.status_code}"
-                print(message)
+                logging.error(message)
                 unparsed_htmls.append((url, None))
                 continue
 
